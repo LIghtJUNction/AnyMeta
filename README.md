@@ -42,6 +42,8 @@ The same controller is available over ADB/root:
 
 `src/AnyMeta/backends.json` is the curated index. The weekly `Update backend index` workflow pulls the upstream KernelSU Next Modules Repo list and opens a normal repository update commit. Release builds run Kam validation, shell checks, ZIP verification, and GitHub artifact publishing.
 
+The official KernelSU organization submission and mirror workflow are documented in [docs/ksu-publishing.md](docs/ksu-publishing.md).
+
 ## Safety model
 
 Only AnyMeta is installed as `metamodule=1`, satisfying KernelSU's single-active-metamodule rule. Backend archives are unpacked under `/data/adb/AnyMeta/backends/<id>`. A checksum listed in the index is mandatory for that entry; unverifiable or failed downloads are never activated.
