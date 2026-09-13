@@ -1,0 +1,40 @@
+name: Update backend index
+
+on:
+  schedule:
+    - cron: '17 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh KernelSU Next backend catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next-Modules-Repo/main/meta_modules.json -o /tmp/meta_modules.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('src/AnyMeta/backends.json')
+          current=json.loads(p.read_text())
+          upstream=json.loads(Path('/tmp/meta_modules.json').read_text())
+          by_id={x['id']: x for x in current}
+          for item in upstream:
+              x=by_id.get(item['id'])
+              if x:
+                  x.update({k:item[k] for k in ('name','description','author','repoUrl') if k in item})
+                  x['repo']=x.pop('repoUrl',x.get('repo',''))
+          p.write_text(json.dumps(list(by_id.values()),ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Open catalog update
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'chore: refresh KernelSU backend catalog'
+          title: 'chore: refresh KernelSU backend catalog'
+          branch: automation/backend-index

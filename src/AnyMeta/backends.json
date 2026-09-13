@@ -1,0 +1,68 @@
+[
+  {
+    "id": "meta-overlayfs",
+    "name": "Meta OverlayFS",
+    "description": "KernelSU 官方参考实现，兼容性优先的 OverlayFS 挂载。",
+    "author": "KernelSU Developers",
+    "repo": "https://github.com/KernelSU-Modules-Repo/meta-overlayfs",
+    "release": "v1.3.1",
+    "asset": "meta-overlayfs-13100-1.3.1.zip",
+    "sha256": "",
+    "tags": ["OverlayFS", "官方", "兼容"]
+  },
+  {
+    "id": "mountify",
+    "name": "Mountify",
+    "description": "用 OverlayFS 全局挂载模块，体积小、启动快。",
+    "author": "xx, KOWX712",
+    "repo": "https://github.com/backslashxx/mountify",
+    "release": "204",
+    "asset": "mountify.zip",
+    "sha256": "",
+    "tags": ["OverlayFS", "轻量"]
+  },
+  {
+    "id": "hybrid_mount",
+    "name": "Hybrid Mount",
+    "description": "OverlayFS 与 Magic Mount 混合策略，适合复杂设备。",
+    "author": "Hybrid Mount Developers",
+    "repo": "https://github.com/Hybrid-Mount/meta-hybrid_mount",
+    "release": "v6.2.0",
+    "asset": "Hybrid-Mount-6.2.0-1929.zip",
+    "sha256": "",
+    "tags": ["Hybrid", "OverlayFS", "Magic Mount"]
+  },
+  {
+    "id": "meta-mm",
+    "name": "Meta Magic Mount",
+    "description": "基于 Magic Mount 的元模块实现，应用兼容性优秀。",
+    "author": "7a72",
+    "repo": "https://github.com/KernelSU-Modules-Repo/meta-mm",
+    "release": "v1.0.1-sprout",
+    "asset": "meta-magic_mount-v1.0.1-sprout-release.zip",
+    "sha256": "",
+    "tags": ["Magic Mount", "兼容"]
+  },
+  {
+    "id": "magic_mount_rs",
+    "name": "Meta Magic Mount RS",
+    "description": "Rust 实现的 Magic Mount，支持多架构预编译包。",
+    "author": "7a72, Tools-cx-app, YuzakiKokuban",
+    "repo": "https://github.com/Tools-cx-app/meta-magic_mount-rs",
+    "release": "v4.0.8",
+    "asset": "magic_mount_rs-4.0.8-900-universal.zip",
+    "sha256": "",
+    "tags": ["Magic Mount", "Rust", "多架构"]
+  },
+  {
+    "id": "meta-zeromount",
+    "name": "ZeroMount",
+    "description": "无挂载 VFS 重定向，支持 SUSFS、回滚保护与 WebUI。",
+    "author": "Enginex0",
+    "repo": "https://github.com/Enginex0/zeromount",
+    "release": "v2.0.216-dev",
+    "asset": "zeromount-v2.0.216-dev.zip",
+    "sha256": "",
+    "tags": ["Mountless", "SUSFS", "实验性"]
+  }
+]

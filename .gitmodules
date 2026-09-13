@@ -1,0 +1,4 @@
+[submodule ".kam/bases/workflows"]
+	path = .kam/bases/workflows
+	url = https://github.com/MemDeco-WG/KamModuleX.git
+	branch = main

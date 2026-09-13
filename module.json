@@ -1,0 +1,11 @@
+{
+  "additionalAuthors": [
+    {
+      "name": "LIghtJUNction",
+      "type": "add"
+    }
+  ],
+  "metamodule": true,
+  "sourceUrl": "https://github.com/LIghtJUNction/AnyMeta",
+  "summary": "Switch KernelSU metamodule backends without losing module data"
+}

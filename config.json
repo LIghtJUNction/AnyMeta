@@ -1,0 +1,9 @@
+{
+  "base_url": "",
+  "description": "Switch KernelSU metamodule backends without losing module data",
+  "enable_log": true,
+  "id": "AnyMeta",
+  "log_dir": "log",
+  "max_num": 0,
+  "name": "AnyMeta"
+}

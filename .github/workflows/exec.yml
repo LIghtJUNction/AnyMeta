@@ -1,0 +1,127 @@
+name: Build Kam Module
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Create GitHub release and upload artifacts
+        required: false
+        type: boolean
+        default: false
+      prerelease:
+        description: Mark GitHub release as a pre-release
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: kam-build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      KAM_PRIVATE_KEY_AVAILABLE: ${{ secrets.KAM_PRIVATE_KEY != '' && '1' || '0' }}
+      KAM_SIGN_ENABLED: ${{ inputs.release == true && secrets.KAM_PRIVATE_KEY != '' && '1' || '0' }}
+      KAM_SIGN_REQUIRED: ${{ inputs.release == true && secrets.KAM_PRIVATE_KEY != '' && '1' || '0' }}
+      KAM_CHANGELOG_ENABLED: '0'
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Cache Cargo
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-rust-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-rust-
+
+      - name: Setup kam
+        uses: MemDeco-WG/setup-kam@v3
+        with:
+          github-token: ${{ github.token }}
+          enable-cache: 'true'
+          cache-targets: cargo,kam
+          install-commitizen: 'false'
+          private-key: ${{ secrets.KAM_PRIVATE_KEY }}
+
+      - name: Install artifact tools
+        run: sudo apt-get update && sudo apt-get install -y unzip zip
+
+      - name: Install Android Rust targets
+        shell: bash
+        run: |
+          set -euo pipefail
+          sysroot="$(rustc --print sysroot)"
+          rm -rf \
+            "${sysroot}/lib/rustlib/aarch64-linux-android" \
+            "${sysroot}/lib/rustlib/x86_64-linux-android"
+          rustup target add aarch64-linux-android x86_64-linux-android
+
+      - name: Install Android cargo build tool
+        run: cargo install cargo-ndk --locked
+
+      - name: Verify tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          kam --version
+          gh --version
+          cargo ndk --version
+
+      - name: Build module
+        shell: bash
+        run: |
+          set -euo pipefail
+          find hooks src -type f -name '*.sh' -exec chmod +x {} + 2>/dev/null || true
+          rm -rf dist
+          kam build
+
+      - name: Verify artifact contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          module_id="$(sed -n 's/^id[[:space:]]*=[[:space:]]*"\(.*\)"/\1/p' kam.toml | head -n1)"
+          test -n "$module_id"
+          test -f "dist/${module_id}.zip"
+          unzip -Z1 "dist/${module_id}.zip" | grep -Fx 'module.prop'
+          ! unzip -Z1 "dist/${module_id}.zip" | grep -E '(^|/)\.git($|/)'
+
+      - name: Create GitHub release
+        if: ${{ inputs.release == true }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=(--all-assets)
+          if [ "${{ inputs.prerelease }}" = "true" ]; then
+            args+=(--prerelease)
+          fi
+          kam publish "${args[@]}"
+
+      - name: Upload build artifact
+        if: always() && hashFiles('dist/*') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: kam-module-artifact
+          path: dist/*
+          if-no-files-found: error

@@ -1,0 +1,38 @@
+{
+  "arch": [
+    "arm64-v8a"
+  ],
+  "categories": [
+    "tools"
+  ],
+  "devices": [],
+  "icon": "icon.png",
+  "license": "MIT",
+  "maintainers": [],
+  "manager": {
+    "apatch": {
+      "arch": [],
+      "devices": [],
+      "min": null,
+      "require": []
+    },
+    "kernelsu": {
+      "arch": [],
+      "devices": [],
+      "min": null,
+      "require": []
+    },
+    "magisk": {
+      "arch": [],
+      "devices": [],
+      "min": null,
+      "require": []
+    }
+  },
+  "note": {
+    "message": "",
+    "title": ""
+  },
+  "require": [],
+  "screenshots": []
+}

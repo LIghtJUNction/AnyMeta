@@ -1,0 +1,54 @@
+{
+  "arch": [
+    "arm64-v8a"
+  ],
+  "categories": [
+    "tools"
+  ],
+  "devices": [],
+  "enable": true,
+  "features": {
+    "apks": false,
+    "boot_completed": false,
+    "modconf": false,
+    "post_fs_data": false,
+    "post_mount": false,
+    "resetprop": false,
+    "sepolicy": false,
+    "service": false,
+    "webroot": false,
+    "zygisk": false
+  },
+  "icon": "icon.png",
+  "id": "AnyMeta",
+  "license": "MIT",
+  "maintainers": [],
+  "manager": {
+    "apatch": {
+      "arch": [],
+      "devices": [],
+      "min": null,
+      "require": []
+    },
+    "kernelsu": {
+      "arch": [],
+      "devices": [],
+      "min": null,
+      "require": []
+    },
+    "magisk": {
+      "arch": [],
+      "devices": [],
+      "min": null,
+      "require": []
+    }
+  },
+  "note": {
+    "message": "",
+    "title": ""
+  },
+  "require": [],
+  "screenshots": [],
+  "source": "https://github.com/LIghtJUNction/AnyMeta",
+  "update_to": "https://raw.githubusercontent.com/LIghtJUNction/AnyMeta/main/update.json"
+}
