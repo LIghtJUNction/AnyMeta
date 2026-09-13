@@ -1,8 +1,8 @@
 [prop]
 id = "AnyMeta"
 name = "AnyMeta"
-version = "v0.1.0"
-versionCode = 1789327934710
+version = "v0.1.1"
+versionCode = 1789410000000
 author = "LIghtJUNction"
 description = "Switch KernelSU metamodule backends without losing module data"
 updateJson = "https://raw.githubusercontent.com/LIghtJUNction/AnyMeta/main/update.json"
@@ -14,15 +14,16 @@ license_file = "LICENSE"
 homepage = ""
 readme = ""
 readme_file = "README.md"
-changelog = ""
+changelog = "https://raw.githubusercontent.com/LIghtJUNction/AnyMeta/main/CHANGELOG.md"
 changelog_file = "CHANGELOG.md"
 screenshots = []
 categories = ["tools"]
 keywords = [
     "kam",
-    "module",
-    "android",
-    "template",
+    "metamodule",
+    "mount-backend",
+    "dependency-manager",
+    "webui",
 ]
 maintainers = []
 repository = "https://github.com/LIghtJUNction/AnyMeta"

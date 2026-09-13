@@ -1,0 +1,126 @@
+[prop]
+id = "anymeta-installer"
+name = "AnyMeta Installer"
+version = "v1.0.0"
+versionCode = 1789330352902
+author = "LIghtJUNction"
+description = "Verified latest-release module installer"
+updateJson = "https://raw.githubusercontent.com/LIghtJUNction/AnyMeta/main/installer/update.json"
+metamodule = false
+
+[mmrl.repo]
+license = "MIT"
+license_file = "LICENSE"
+homepage = ""
+readme = ""
+readme_file = "README.md"
+changelog = ""
+changelog_file = "CHANGELOG.md"
+screenshots = []
+categories = ["tools"]
+keywords = [
+    "kam",
+    "module",
+    "android",
+]
+maintainers = []
+repository = "https://github.com/LIghtJUNction/AnyMeta"
+documentation = ""
+issues = ""
+funding = ""
+support = ""
+donate = ""
+cover = ""
+icon = ""
+devices = []
+arch = []
+require = []
+antifeatures = []
+max_num = 0
+min_api = 0
+max_api = 0
+verified = false
+features = [
+    "module-template",
+    "customization",
+]
+
+[mmrl.repo.note]
+title = ""
+message = ""
+
+[mmrl.repo.manager.magisk]
+devices = []
+arch = []
+require = []
+
+[mmrl.repo.manager.kernelsu]
+devices = []
+arch = []
+require = []
+
+[mmrl.repo.manager.apatch]
+devices = []
+arch = []
+require = []
+
+[mmrl.repo.options.archive]
+compression = ""
+
+[kam]
+module_type = "kam"
+
+[kam.build]
+source_dir = "src/anymeta-installer"
+target_dir = "dist"
+output_file = "{{id}}"
+hooks_dir = "hooks"
+exclude = [
+    ".git/",
+    "target/",
+    "node_modules/",
+    ".DS_Store",
+    "Thumbs.db",
+    "*.tmp",
+    "*.log",
+    "*.bak",
+    ".kam/",
+]
+include = []
+respect_gitignore = false
+
+[kam.tmpl.variables.target_asset]
+var_type = "string"
+required = true
+default = "AnyMeta.zip"
+help = "Exact release ZIP asset name"
+
+[kam.tmpl.variables.target_cache_dir]
+var_type = "string"
+required = false
+default = ""
+help = "Persistent cache directory; empty uses /data/adb/cache/{module_id}"
+
+[kam.tmpl.variables.target_direct_min_kib]
+var_type = "integer"
+required = false
+default = "256"
+help = "Direct speed threshold in KiB/s"
+
+[kam.tmpl.variables.target_module]
+var_type = "string"
+required = true
+default = "AnyMeta"
+help = "Expected module.prop id"
+
+[kam.tmpl.variables.target_proxies_json]
+var_type = "string"
+required = false
+default = '"https://ghfast.top/", "https://ghproxy.net/", "https://gh-proxy.com/"'
+help = "JSON string entries for HTTPS mirrors"
+
+[kam.tmpl.variables.target_repository]
+var_type = "string"
+required = true
+default = "LIghtJUNction/MagicNet"
+help = "GitHub owner/repository"

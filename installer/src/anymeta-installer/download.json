@@ -1,0 +1,8 @@
+{
+  "repository": "LIghtJUNction/AnyMeta",
+  "asset": "AnyMeta.zip",
+  "module_id": "AnyMeta",
+  "cache_dir": "/data/adb/AnyMeta/cache",
+  "proxies": ["https://ghfast.top/", "https://ghproxy.net/"],
+  "direct_min_kib": 256
+}

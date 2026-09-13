@@ -7,8 +7,12 @@
     "repo": "https://github.com/KernelSU-Modules-Repo/meta-overlayfs",
     "release": "v1.3.1",
     "asset": "meta-overlayfs-13100-1.3.1.zip",
-    "sha256": "",
-    "tags": ["OverlayFS", "官方", "兼容"]
+    "sha256": "279d85a6a35724dfcf8aa1137a9630c7e989e154b94543517c539ee70f9b8811",
+    "tags": [
+      "OverlayFS",
+      "官方",
+      "兼容"
+    ]
   },
   {
     "id": "mountify",
@@ -18,19 +22,26 @@
     "repo": "https://github.com/backslashxx/mountify",
     "release": "204",
     "asset": "mountify.zip",
-    "sha256": "",
-    "tags": ["OverlayFS", "轻量"]
+    "sha256": "dde361c444f6990b759890720487785402a391a61cf6530f960deb98e5ef864d",
+    "tags": [
+      "OverlayFS",
+      "轻量"
+    ]
   },
   {
     "id": "hybrid_mount",
     "name": "Hybrid Mount",
     "description": "OverlayFS 与 Magic Mount 混合策略，适合复杂设备。",
     "author": "Hybrid Mount Developers",
-    "repo": "https://github.com/Hybrid-Mount/meta-hybrid_mount",
+    "repo": "https://github.com/KernelSU-Modules-Repo/hybrid_mount",
     "release": "v6.2.0",
     "asset": "Hybrid-Mount-6.2.0-1929.zip",
-    "sha256": "",
-    "tags": ["Hybrid", "OverlayFS", "Magic Mount"]
+    "sha256": "0e592aba6b4af1519cc4924a72bc4613afaa6b15b7d3be52c492cb3aacc1a29a",
+    "tags": [
+      "Hybrid",
+      "OverlayFS",
+      "Magic Mount"
+    ]
   },
   {
     "id": "meta-mm",
@@ -40,19 +51,26 @@
     "repo": "https://github.com/KernelSU-Modules-Repo/meta-mm",
     "release": "v1.0.1-sprout",
     "asset": "meta-magic_mount-v1.0.1-sprout-release.zip",
-    "sha256": "",
-    "tags": ["Magic Mount", "兼容"]
+    "sha256": "4e2bfbccd80b0d787223cc8fe36315e8b269514a28f6d7ffb8e6e1f855e6e92b",
+    "tags": [
+      "Magic Mount",
+      "兼容"
+    ]
   },
   {
     "id": "magic_mount_rs",
     "name": "Meta Magic Mount RS",
     "description": "Rust 实现的 Magic Mount，支持多架构预编译包。",
     "author": "7a72, Tools-cx-app, YuzakiKokuban",
-    "repo": "https://github.com/Tools-cx-app/meta-magic_mount-rs",
-    "release": "v4.0.8",
-    "asset": "magic_mount_rs-4.0.8-900-universal.zip",
-    "sha256": "",
-    "tags": ["Magic Mount", "Rust", "多架构"]
+    "repo": "https://github.com/KernelSU-Modules-Repo/magic_mount_rs",
+    "release": "v4.0.2",
+    "asset": "magic_mount_rs-4.0.2-747-arm64.zip",
+    "sha256": "cb36e01810765b2cf5a4b53c2ff85bdfa8b24998f995cd0eca8b2d9eb4b238e1",
+    "tags": [
+      "Magic Mount",
+      "Rust",
+      "多架构"
+    ]
   },
   {
     "id": "meta-zeromount",
@@ -62,7 +80,11 @@
     "repo": "https://github.com/Enginex0/zeromount",
     "release": "v2.0.216-dev",
     "asset": "zeromount-v2.0.216-dev.zip",
-    "sha256": "",
-    "tags": ["Mountless", "SUSFS", "实验性"]
+    "sha256": "12f9fde9edde5317b86e3672b4b20981eaa16581d8e736ef781b7a628b1bd30f",
+    "tags": [
+      "Mountless",
+      "SUSFS",
+      "实验性"
+    ]
   }
 ]
