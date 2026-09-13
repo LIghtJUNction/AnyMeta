@@ -87,8 +87,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          sysroot="$(rustc --print sysroot)"
-          rm -rf "${sysroot}/lib/rustlib/aarch64-linux-android"
           rustup target add aarch64-linux-android
 
       - name: Install Android cargo build tool
