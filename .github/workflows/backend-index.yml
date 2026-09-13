@@ -57,6 +57,36 @@ jobs:
                       backend['sha256']=digest.removeprefix('sha256:') if digest.startswith('sha256:') else ''
               except Exception as error:
                   print(f"warning: retained release for {backend['id']}: {error}")
+          known={backend['id'] for backend in current}
+          for item in upstream:
+              module_id=item.get('moduleId')
+              if not item.get('metamodule') or not module_id or module_id in known:
+                  continue
+              repo=item.get('url') or ''
+              try:
+                  detail=get('https://modules.kernelsu.org/module/'+urllib.parse.quote(module_id, safe='')+'.json')
+                  repo=detail.get('url') or repo
+                  slug=repo.removeprefix('https://github.com/').rstrip('/')
+                  release=get('https://api.github.com/repos/'+slug+'/releases/latest')
+                  assets=[a for a in release.get('assets', []) if a.get('name','').lower().endswith('.zip') and '-debug.zip' not in a.get('name','').lower()]
+                  if not assets:
+                      continue
+                  asset=assets[0]
+                  digest=asset.get('digest') or ''
+                  current.append({
+                      'id': module_id,
+                      'name': item.get('moduleName') or module_id,
+                      'description': item.get('summary') or '',
+                      'author': ', '.join(a['name'] for a in item.get('authors', []) if a.get('name')),
+                      'repo': repo,
+                      'release': release['tag_name'],
+                      'asset': asset['name'],
+                      'sha256': digest.removeprefix('sha256:') if digest.startswith('sha256:') else '',
+                      'tags': ['KernelSU', 'metamodule'],
+                  })
+                  known.add(module_id)
+              except Exception as error:
+                  print(f"warning: skipped new metamodule {module_id}: {error}")
           p.write_text(json.dumps(current,ensure_ascii=False,indent=2)+'\n')
           PY
       - name: Open catalog update
