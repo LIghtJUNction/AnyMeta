@@ -100,7 +100,7 @@ jobs:
           set -euo pipefail
           kam_src="$RUNNER_TEMP/kam-src"
           git clone --depth 1 --branch v0.6.14 https://github.com/MemDeco-WG/Kam.git "$kam_src"
-          cargo ndk --target arm64-v8a --platform 23 --manifest-path "$kam_src/Cargo.toml" build --release --locked
+          (cd "$kam_src" && cargo ndk --target arm64-v8a --platform 23 build --release --locked)
           mkdir -p src/AnyMeta/bin
           install -m 0755 "$kam_src/target/aarch64-linux-android/release/kam" src/AnyMeta/bin/kam
 
